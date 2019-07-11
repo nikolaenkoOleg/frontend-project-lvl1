@@ -23,3 +23,4 @@ $ make install
 ```sh
 $ make test
 ```
+asciinema - https://asciinema.org/a/A5hYux2C9TPERdU2e2X1C0dfV
