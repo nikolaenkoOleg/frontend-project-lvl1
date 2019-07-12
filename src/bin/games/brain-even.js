@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-undef */
-
 import readlineSync from 'readline-sync';
 
 const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * 42));

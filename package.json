@@ -1,12 +1,13 @@
 {
   "name": "brain-games",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "hexlet project",
   "main": "dist/brain-games.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
     "brain-even": "dist/bin/games/brain-even.js",
-    "brain-calc": "dist/bin/games/brain-calc.js"
+    "brain-calc": "dist/bin/games/brain-calc.js",
+    "brain-gcd": "dist/bin/games/brain-gcd.js"
   },
   "engines": {
     "node": ">=8"

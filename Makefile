@@ -5,7 +5,7 @@ start:
 	npx babel-node src/bin/brain-games.js
 
 test:
-	npx babel-node src/bin/games/brain-calc.js
+	npx babel-node src/bin/games/brain-gcd.js
 
 install-deps:
 	npm install
