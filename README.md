@@ -23,4 +23,5 @@ $ make install
 ```sh
 $ make test
 ```
-asciinema - https://asciinema.org/a/A5hYux2C9TPERdU2e2X1C0dfV
+brain-even - https://asciinema.org/a/A5hYux2C9TPERdU2e2X1C0dfV
+brain-calc - https://asciinema.org/a/U1mVTZKxDsKTwwj1HNCdZ3ZY3

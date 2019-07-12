@@ -1,15 +1,13 @@
 #!/usr/bin/env node
+
+/* eslint-disable no-undef */
+
 import readlineSync from 'readline-sync';
-// import getName from '..';
 
-const getRandomNumber = () => Math.floor(Math.random() * 42);
+const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * 42));
+export default (userName) => {
+	console.log('Answer "yes" if number even otherwise answer "no". \n');
 
-console.log('Welcome to the Brain Games!\nAnswer "yes" if number even otherwise answer "no". \n');
-
-const userName = readlineSync.question('May I have your name? ');
-console.log(`Hi, ${userName}!\n`);
-
-const even = () => { // функция для того, чтобы через return прекращать игру
 	for (let i = 0; i < 3; i += 1) {
 		const number = getRandomNumber();
 		console.log(`Question: ${number}`);
@@ -29,5 +27,3 @@ const even = () => { // функция для того, чтобы через re
 		console.log(`\nCongratulations, ${userName}!!!`);
 	}
 };
-
-even();
