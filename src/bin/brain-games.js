@@ -4,14 +4,15 @@ import even from './games/brain-even';
 import calc from './games/brain-calc';
 import gcd from './games/brain-gcd';
 import prog from './games/brain-prog';
+import prime from './games/brain-prime';
 
 console.log('Welcome to the Brain Games!');
 
 const userName = readlineSync.question('May I have your name? ');
 console.log(`Hi, ${userName}!\n`);
-console.log('The following games are available to you:');
+console.log('The following games are available for you:');
 
-console.log('brain-even\nbrain-calc\nbrain-gcd\nbrain-prog');
+console.log('brain-even\nbrain-calc\nbrain-gcd\nbrain-prog\nbrain-prime');
 const gameTitle = readlineSync.question(`${userName}, select your game from the list upper and press Enter: `);
 
 switch (gameTitle) {
@@ -27,6 +28,9 @@ switch (gameTitle) {
   case 'brain-prog':
     prog(userName);
     break;
+  case 'brain-prime':
+    prime(userName);
+    break;
   default:
-    console.log('Error. Check game title');
+    console.log('Error. Check game title and try again');
 }

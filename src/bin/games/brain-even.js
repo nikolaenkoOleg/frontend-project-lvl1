@@ -8,7 +8,7 @@ export default (userName) => {
 
 	for (let i = 0; i < 3; i += 1) {
 		const number = getRandomNumber();
-		console.log(`Question: ${number}`);
+		console.log(`\nQuestion: ${number}`);
 		const answer = readlineSync.question('Your answer: ');
 
 		if (number % 2 === 0 && answer === 'yes') {
@@ -19,9 +19,9 @@ export default (userName) => {
 		} else if (number % 2 !== 0 && answer === 'no') {
 			console.log('Correct!');
 		} else if (number % 2 !== 0 && answer === 'yes') {
-			console.log(`"yes" is wrong answer ;(. Correct answer was "yes". \n Let's try again, ${userName}.`);
+			console.log(`"yes" is wrong answer ;(. Correct answer was "no". \n Let's try again, ${userName}.`);
 			return;
 		}
-		console.log(`\nCongratulations, ${userName}!!!`);
 	}
+	console.log(`\nCongratulations, ${userName}!!!`);
 };
