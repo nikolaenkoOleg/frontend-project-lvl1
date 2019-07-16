@@ -18,14 +18,18 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest",
-    "build": "babel src --out-dir dist --source-maps inline",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nikolaenkoOleg/frontend-project-lvl1.git"
   },
+  "keywords": [
+    "hexlet",
+    "hexlet-projects",
+    "brain-games"
+  ],
   "author": "Oleg Nikolaenko",
   "license": "ISC",
   "bugs": {
@@ -57,6 +61,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^22.7.2",
     "eslint-plugin-lodash-fp": "^2.2.0-a1",
+    "eslint-config-ideal": "^0.1.0",
     "flow-bin": "^0.102",
     "flow-typed": "^2.5.2",
     "gulp-babel": "^8.0.0",

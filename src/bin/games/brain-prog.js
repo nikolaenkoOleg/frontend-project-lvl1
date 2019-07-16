@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * 42));
+const randomizer = 42;
+const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
 
 const getArithmeticProgression = () => {
   const startNumber = getRandomNumber(); // определяем стартовое число прогрессии
@@ -8,7 +9,7 @@ const getArithmeticProgression = () => {
 
   const arr = [startNumber]; // спросить про const тут...
   for (let i = 1; i < 10; i += 1) {
-    arr[i] = arr[i - 1] + stepNumber;
+    arr[i] = arr[i - 1] + stepNumber; // тут формируется массив с арифметической прогрессией
   }
 
   return arr;
@@ -32,7 +33,7 @@ export default (userName) => {
       console.log('Correct!');
     } else if (userAnswer !== correctAnswer) {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-			return;
+      return;
     }
   }
   console.log(`\nCongratulations, ${userName}!!!`);

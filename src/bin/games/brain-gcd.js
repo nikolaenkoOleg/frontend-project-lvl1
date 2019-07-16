@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * 42));
+const randomizer = 42;
+const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
 
 const findGcd = (num1, num2) => {
   if (num2) {
@@ -24,7 +25,7 @@ export default (userName) => {
       console.log('Correct!');
     } else if (userAnswer !== correctAnswer) {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-			return;
+      return;
     }
   }
   console.log(`\nCongratulations, ${userName}!!!`);

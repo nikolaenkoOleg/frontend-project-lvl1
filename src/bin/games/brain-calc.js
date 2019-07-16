@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * 42));
+const randomizer = 42;
+const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
 
 const calculator = (num1, num2, symbol) => {
   let value = 0;
@@ -23,7 +24,7 @@ export default (userName) => {
 
     const arr = ['-', '+', '*'];
     const randomArrIndex = Math.floor(Math.random() * arr.length);
-    const randomArrElement = arr[randomArrIndex];
+    const randomArrElement = arr[randomArrIndex]; // выбираем случайный знак из массива
 
     const correctAnswer = calculator(firstRandomNumber, secondRandomNumber, randomArrElement);
 
@@ -34,7 +35,7 @@ export default (userName) => {
       console.log('Correct!');
     } else if (userAnswer !== correctAnswer) {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-			return;
+      return;
     }
   }
   console.log(`\nCongratulations, ${userName}!!!`);
