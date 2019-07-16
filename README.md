@@ -23,6 +23,10 @@ $ make install
 ```sh
 $ make test
 ```
-brain-even - https://asciinema.org/a/A5hYux2C9TPERdU2e2X1C0dfV
-brain-calc - https://asciinema.org/a/U1mVTZKxDsKTwwj1HNCdZ3ZY3
-brain-gcd - https://asciinema.org/a/Lv9s9wHSiRrbczszKx39sMmIT
+Asciinema:
+
+brain-even - https://asciinema.org/a/Kxo2RKHy7RUo1sWWiK8YIwkr5
+brain-calc - https://asciinema.org/a/Gy2NpGjYo5pYg7MLsyWR3H8V8
+brain-gcd - https://asciinema.org/a/drTKFm7SkDbDP2s8e1MHQWxw9
+brain-prog - https://asciinema.org/a/1SmXccDPC1FhoBluYGzqNqBZi
+brain-prime - https://asciinema.org/a/OagdXGtKb8yXJaoh46I0l6YGu
