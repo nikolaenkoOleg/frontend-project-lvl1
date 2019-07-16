@@ -39,7 +39,7 @@ const games = () => {
         console.log('Error. Check game title and try again');
     }
 
-    const nextRoundChecker = readlineSync.question('Do you want continue the game? Press "N" for exit, any key to continue');
+    const nextRoundChecker = readlineSync.question('Do you want continue the game? Press "N" for exit, any key to continue ');
     if (nextRoundChecker === 'N') {
       console.log(`Goodbye ${userName}!`);
       return;
