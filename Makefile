@@ -1,11 +1,8 @@
 install: 
 	npm install
 
-start:
-	npx babel-node src/bin/brain-games.js
-
 test:
-	npx babel-node src/bin/brain-games.js
+	npx babel-node src/bin/games/brain-even.js
 
 install-deps:
 	npm install

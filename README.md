@@ -25,7 +25,7 @@ $ make test
 ```
 Asciinema:
 
-brain-even - https://asciinema.org/a/Kxo2RKHy7RUo1sWWiK8YIwkr5
+brain-even - https://asciinema.org/a/BMleptQNC7R3joATScPMMvyIg
 brain-calc - https://asciinema.org/a/Gy2NpGjYo5pYg7MLsyWR3H8V8
 brain-gcd - https://asciinema.org/a/drTKFm7SkDbDP2s8e1MHQWxw9
 brain-prog - https://asciinema.org/a/1SmXccDPC1FhoBluYGzqNqBZi

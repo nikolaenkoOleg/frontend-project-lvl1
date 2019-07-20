@@ -1,30 +1,40 @@
 #!/usr/bin/env node
+import * as engine from '../../engine';
 
-import readlineSync from 'readline-sync';
+engine.youAreWelcome();
+console.log('Answer "yes" if number even otherwise answer "no".');
 
-const randomizer = 42;
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
+const userName = engine.getName();
 
-export default (userName) => {
-  console.log('Answer "yes" if number even otherwise answer "no". \n');
+const even = (answerCounter) => {
+  const randomNumber = engine.getRandomNumber();
+  console.log(`Question: ${randomNumber}`);
 
-  for (let i = 0; i < 3; i += 1) {
-    const number = getRandomNumber();
-    console.log(`Question: ${number}`);
-    const userAnswer = readlineSync.question('Your answer: ');
-    const parirtyChecker = 2;
+  const userAnswer = engine.getAnswer();
+  const parirtyChecker = 2;
+  const wrongAnswerIndex = 1;
 
-    if (number % parirtyChecker === 0 && userAnswer === 'yes') {
-      console.log('Correct!');
-    } else if (number % parirtyChecker === 0 && userAnswer !== 'yes') {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was "yes". \n Let's try again, ${userName}.`);
-      return;
-    } else if (number % parirtyChecker !== 0 && userAnswer === 'no') {
-      console.log('Correct!');
-    } else if (number % parirtyChecker !== 0 && userAnswer !== 'no') {
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was "yes". \n Let's try again, ${userName}.`);
-      return;
-    }
+  let answerChecker = answerCounter;
+
+  if (randomNumber % parirtyChecker === 0 && userAnswer === 'yes') {
+    engine.showCorrectMessage();
+  } else if (randomNumber % parirtyChecker === 0 && userAnswer !== 'yes') {
+    const correctAnswer = 'yes';
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
+  } else if (randomNumber % parirtyChecker !== 0 && userAnswer === 'no') {
+    engine.showCorrectMessage();
+  } else if (randomNumber % parirtyChecker !== 0 && userAnswer !== 'no') {
+    const correctAnswer = 'no';
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
   }
-  console.log(`\nCongratulations, ${userName}!!!`);
+
+  return answerChecker;
 };
+
+engine.gameIteration(even, userName);
