@@ -1,7 +1,11 @@
-import readlineSync from 'readline-sync';
+#!/usr/bin/env node
 
-const randomizer = 42;
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
+import * as engine from '../../engine';
+
+engine.youAreWelcome();
+console.log('What is the result of the expression?');
+
+const userName = engine.getName();
 
 const calculator = (num1, num2, symbol) => {
   let value = 0;
@@ -16,27 +20,31 @@ const calculator = (num1, num2, symbol) => {
   return value;
 };
 
-export default (userName) => {
-  console.log('What is the result of the expression?');
-  for (let i = 0; i < 3; i += 1) {
-    const firstRandomNumber = getRandomNumber();
-    const secondRandomNumber = getRandomNumber();
+const calc = (answerCounter) => {
+  const firstRandomNumber = engine.getRandomNumber();
+  const secondRandomNumber = engine.getRandomNumber();
 
-    const arr = ['-', '+', '*'];
-    const randomArrIndex = Math.floor(Math.random() * arr.length);
-    const randomArrElement = arr[randomArrIndex]; // выбираем случайный знак из массива
+  const arithmeticSymbols = ['-', '+', '*'];
+  const randomSymbolIndex = Math.floor(Math.random() * arithmeticSymbols.length);
+  const randomSymbol = arithmeticSymbols[randomSymbolIndex];
 
-    const correctAnswer = calculator(firstRandomNumber, secondRandomNumber, randomArrElement);
+  console.log(`Question: ${firstRandomNumber} ${randomSymbol} ${secondRandomNumber}`);
+  const userAnswer = parseInt(engine.getAnswer(), 10);
 
-    console.log(`Question: ${firstRandomNumber} ${randomArrElement} ${secondRandomNumber}`);
-    const userAnswer = parseInt(readlineSync.question('Your answer: '), 10);
+  const wrongAnswerIndex = 1;
+  let answerChecker = answerCounter;
+  const correctAnswer = calculator(firstRandomNumber, secondRandomNumber, randomSymbol);
 
-    if (userAnswer === correctAnswer) {
-      console.log('Correct!');
-    } else if (userAnswer !== correctAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-      return;
-    }
+  if (userAnswer === correctAnswer) {
+    engine.showCorrectMessage();
+  } else if (userAnswer !== correctAnswer) {
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
   }
-  console.log(`\nCongratulations, ${userName}!!!`);
+
+  return answerChecker;
 };
+
+engine.gameIteration(calc, userName);

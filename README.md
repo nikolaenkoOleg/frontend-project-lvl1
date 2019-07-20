@@ -26,7 +26,7 @@ $ make test
 Asciinema:
 
 brain-even - https://asciinema.org/a/BMleptQNC7R3joATScPMMvyIg
-brain-calc - https://asciinema.org/a/Gy2NpGjYo5pYg7MLsyWR3H8V8
-brain-gcd - https://asciinema.org/a/drTKFm7SkDbDP2s8e1MHQWxw9
-brain-prog - https://asciinema.org/a/1SmXccDPC1FhoBluYGzqNqBZi
-brain-prime - https://asciinema.org/a/OagdXGtKb8yXJaoh46I0l6YGu
+brain-calc - https://asciinema.org/a/VKoGWord8RMmtiY18Qs60Vus7
+brain-gcd - https://asciinema.org/a/Ct7orVaGlHfDtizPEPzt2MYb2
+brain-prog - https://asciinema.org/a/rJXk7ZkHBhzDCskqBYgnLd1M9
+brain-prime - https://asciinema.org/a/e2gWkKaIalh28lGZdoEMbAFQH

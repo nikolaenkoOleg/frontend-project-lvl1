@@ -1,7 +1,11 @@
-import readlineSync from 'readline-sync';
+#!/usr/bin/env node
 
-const randomizer = 42;
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
+import * as engine from '../../engine';
+
+engine.youAreWelcome();
+console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+
+const userName = engine.getName();
 
 const primeChecker = (number) => {
   if (number === 0 || number === 1) return false;
@@ -13,24 +17,38 @@ const primeChecker = (number) => {
   return true;
 };
 
-export default (userName) => {
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  for (let i = 0; i < 3; i += 1) {
-    const randomNumber = getRandomNumber();
-    console.log(`\nQuestion: ${randomNumber}`);
-    const userAnswer = readlineSync.question('Your answer: ');
+const boolToYesNo = (bool) => {
+  const result = bool ? 'yes' : 'no';
 
-    if (primeChecker(randomNumber) && userAnswer === 'yes') {
-      console.log('Correct!');
-    } else if (!primeChecker(randomNumber) && userAnswer === 'yes') {
-      console.log(`"yes" is wrong answer ;(. Correct answer was "no". \n Let's try again, ${userName}.`);
-      return;
-    } else if (primeChecker(randomNumber) && userAnswer === 'no') {
-      console.log(`"no" is wrong answer ;(. Correct answer was "yes". \n Let's try again, ${userName}.`);
-      return;
-    } else if (!primeChecker(randomNumber) && userAnswer === 'no') {
-      console.log('Correct!');
-    }
-  }
-  console.log(`\nCongratulations, ${userName}!!!`);
+  return result;
 };
+
+const prime = (answerCounter) => {
+  const randomNumber = engine.getRandomNumber();
+  console.log(`Question: ${randomNumber}`);
+  const userAnswer = engine.getAnswer();
+
+  const correctAnswer = boolToYesNo(primeChecker(randomNumber));
+  const wrongAnswerIndex = 1;
+  let answerChecker = answerCounter;
+
+  if (correctAnswer === 'yes' && userAnswer === 'yes') {
+    engine.showCorrectMessage();
+  } else if (correctAnswer === 'no' && userAnswer === 'yes') {
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
+  } else if (correctAnswer === 'yes' && userAnswer === 'no') {
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
+  } else if (correctAnswer === 'no' && userAnswer === 'no') {
+    engine.showCorrectMessage();
+  }
+
+  return answerChecker;
+};
+
+engine.gameIteration(prime, userName);

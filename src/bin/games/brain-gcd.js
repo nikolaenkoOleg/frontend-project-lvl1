@@ -1,7 +1,11 @@
-import readlineSync from 'readline-sync';
+#!/usr/bin/env node
 
-const randomizer = 42;
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
+import * as engine from '../../engine';
+
+engine.youAreWelcome();
+console.log('Find the greatest common divisor of given numbers.');
+
+const userName = engine.getName();
 
 const findGcd = (num1, num2) => {
   if (num2) {
@@ -11,22 +15,26 @@ const findGcd = (num1, num2) => {
   return Math.abs(num1);
 };
 
-export default (userName) => {
-  console.log('Find the greatest common divisor of given numbers.');
-  for (let i = 0; i < 3; i += 1) {
-    const firstRandomNumber = getRandomNumber();
-    const secondRandomNumber = getRandomNumber();
+const gcd = (answerCounter) => {
+  const firstRandomNumber = engine.getRandomNumber();
+  const secondRandomNumber = engine.getRandomNumber();
 
-    console.log(`Question: ${firstRandomNumber}, ${secondRandomNumber}`);
-    const correctAnswer = findGcd(firstRandomNumber, secondRandomNumber);
-    const userAnswer = parseInt(readlineSync.question('Your answer: '), 10);
+  console.log(`Question: ${firstRandomNumber}, ${secondRandomNumber}`);
+  const correctAnswer = findGcd(firstRandomNumber, secondRandomNumber);
+  const userAnswer = parseInt(engine.getAnswer(), 10);
 
-    if (userAnswer === correctAnswer) {
-      console.log('Correct!');
-    } else if (userAnswer !== correctAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-      return;
-    }
+  const wrongAnswerIndex = 1;
+  let answerChecker = answerCounter;
+  if (userAnswer === correctAnswer) {
+    engine.showCorrectMessage();
+  } else if (userAnswer !== correctAnswer) {
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
   }
-  console.log(`\nCongratulations, ${userName}!!!`);
+
+  return answerChecker;
 };
+
+engine.gameIteration(gcd, userName);

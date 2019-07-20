@@ -1,11 +1,15 @@
-import readlineSync from 'readline-sync';
+#!/usr/bin/env node
 
-const randomizer = 42;
-const getRandomNumber = () => Math.floor(Math.random() * (Math.random() * randomizer));
+import * as engine from '../../engine';
+
+engine.youAreWelcome();
+console.log('What number is missing in the progression?');
+
+const userName = engine.getName();
 
 const getArithmeticProgression = () => {
-  const startNumber = getRandomNumber(); // определяем стартовое число прогрессии
-  const stepNumber = getRandomNumber(); // определяем шаг прогрессии
+  const startNumber = engine.getRandomNumber(); // определяем стартовое число прогрессии
+  const stepNumber = engine.getRandomNumber(); // определяем шаг прогрессии
 
   const arr = [startNumber]; // спросить про const тут...
   for (let i = 1; i < 10; i += 1) {
@@ -15,26 +19,31 @@ const getArithmeticProgression = () => {
   return arr;
 };
 
-export default (userName) => {
-  console.log('What number is missing in the progression?');
-  for (let i = 0; i < 3; i += 1) {
-    const progression = getArithmeticProgression(); // массив с прогрессией
-    const randomProgressionIndex = Math.floor(Math.random() * 10); /* индекс случайного элемента в
-    массиве от 0 до 10 */
+const prog = (answerCounter) => {
+  const progression = getArithmeticProgression(); // массив с прогрессией
+  const randomProgressionIndex = Math.floor(Math.random() * 10);
+  /* индекс случайного элемента в
+     массиве от 0 до 10 */
 
-    const correctAnswer = progression[randomProgressionIndex]; // формируем правильный ответ...
-    progression[randomProgressionIndex] = '..'; // и меняем его на двоеточие
+  const correctAnswer = progression[randomProgressionIndex]; // формируем правильный ответ...
+  progression[randomProgressionIndex] = '..'; // и меняем его на двоеточие
 
-    const stringProgression = progression.join(' '); // прогрессия в виде строки для пользователя
-    console.log(`Question: ${stringProgression}`);
-    const userAnswer = parseInt(readlineSync.question('Your answer: '), 10);
+  const stringProgression = progression.join(' '); // прогрессия в виде строки для пользователя
+  console.log(`Question: ${stringProgression}`);
+  const userAnswer = parseInt(engine.getAnswer(), 10);
 
-    if (userAnswer === correctAnswer) {
-      console.log('Correct!');
-    } else if (userAnswer !== correctAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}.`);
-      return;
-    }
+  const wrongAnswerIndex = 1;
+  let answerChecker = answerCounter;
+  if (userAnswer === correctAnswer) {
+    engine.showCorrectMessage();
+  } else if (userAnswer !== correctAnswer) {
+    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+    answerChecker += wrongAnswerIndex;
+
+    return answerChecker;
   }
-  console.log(`\nCongratulations, ${userName}!!!`);
+
+  return answerChecker;
 };
+
+engine.gameIteration(prog, userName);
