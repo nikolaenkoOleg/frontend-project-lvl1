@@ -1,32 +1,34 @@
 #!/usr/bin/env node
-import * as engine from '../../engine';
+
+import * as engine from '../engine';
 
 engine.youAreWelcome();
 console.log('Answer "yes" if number even otherwise answer "no".');
 
-const userName = engine.getName();
+export const userName = engine.getName();
+engine.greetingUser(userName);
 
-const even = (answerCounter) => {
-  const randomNumber = engine.getRandomNumber();
-  console.log(`Question: ${randomNumber}`);
+export const findEvenGame = (answerCounter) => {
+  const gameItem = engine.getRandomNumber();
+  engine.askQuestion(gameItem);
 
   const userAnswer = engine.getAnswer();
-  const parirtyChecker = 2;
+  const parirtyDivisor = 2;
   const wrongAnswerIndex = 1;
 
   let answerChecker = answerCounter;
 
-  if (randomNumber % parirtyChecker === 0 && userAnswer === 'yes') {
+  if (gameItem % parirtyDivisor === 0 && userAnswer === 'yes') {
     engine.showCorrectMessage();
-  } else if (randomNumber % parirtyChecker === 0 && userAnswer !== 'yes') {
+  } else if (gameItem % parirtyDivisor === 0 && userAnswer !== 'yes') {
     const correctAnswer = 'yes';
     engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
     answerChecker += wrongAnswerIndex;
 
     return answerChecker;
-  } else if (randomNumber % parirtyChecker !== 0 && userAnswer === 'no') {
+  } else if (gameItem % parirtyDivisor !== 0 && userAnswer === 'no') {
     engine.showCorrectMessage();
-  } else if (randomNumber % parirtyChecker !== 0 && userAnswer !== 'no') {
+  } else if (gameItem % parirtyDivisor !== 0 && userAnswer !== 'no') {
     const correctAnswer = 'no';
     engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
     answerChecker += wrongAnswerIndex;
@@ -36,5 +38,3 @@ const even = (answerCounter) => {
 
   return answerChecker;
 };
-
-engine.gameIteration(even, userName);

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import * as engine from '../../engine';
+import * as engine from '../engine';
 
 engine.youAreWelcome();
 console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
-const userName = engine.getName();
+export const userName = engine.getName();
 
-const primeChecker = (number) => {
+const isPrime = (number) => {
   if (number === 0 || number === 1) return false;
 
   for (let i = 2; i < number; i += 1) {
@@ -23,12 +23,12 @@ const boolToYesNo = (bool) => {
   return result;
 };
 
-const prime = (answerCounter) => {
+export const findPrimeGame = (answerCounter) => {
   const randomNumber = engine.getRandomNumber();
   console.log(`Question: ${randomNumber}`);
   const userAnswer = engine.getAnswer();
 
-  const correctAnswer = boolToYesNo(primeChecker(randomNumber));
+  const correctAnswer = boolToYesNo(isPrime(randomNumber));
   const wrongAnswerIndex = 1;
   let answerChecker = answerCounter;
 
@@ -50,5 +50,3 @@ const prime = (answerCounter) => {
 
   return answerChecker;
 };
-
-engine.gameIteration(prime, userName);

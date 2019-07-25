@@ -1,11 +1,10 @@
-#!/usr/bin/env node
-
-import * as engine from '../../engine';
+import * as engine from '../engine';
 
 engine.youAreWelcome();
 console.log('What is the result of the expression?');
 
-const userName = engine.getName();
+export const userName = engine.getName();
+engine.greetingUser();
 
 const calculator = (num1, num2, symbol) => {
   let value = 0;
@@ -20,15 +19,16 @@ const calculator = (num1, num2, symbol) => {
   return value;
 };
 
-const calc = (answerCounter) => {
+export const findSolutionGame = (answerCounter) => {
   const firstRandomNumber = engine.getRandomNumber();
   const secondRandomNumber = engine.getRandomNumber();
 
   const arithmeticSymbols = ['-', '+', '*'];
   const randomSymbolIndex = Math.floor(Math.random() * arithmeticSymbols.length);
   const randomSymbol = arithmeticSymbols[randomSymbolIndex];
+  const question = firstRandomNumber + randomSymbol + secondRandomNumber;
+  engine.askQuestion(question);
 
-  console.log(`Question: ${firstRandomNumber} ${randomSymbol} ${secondRandomNumber}`);
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
   const wrongAnswerIndex = 1;
@@ -46,5 +46,3 @@ const calc = (answerCounter) => {
 
   return answerChecker;
 };
-
-engine.gameIteration(calc, userName);

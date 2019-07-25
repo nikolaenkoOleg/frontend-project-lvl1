@@ -1,11 +1,9 @@
-#!/usr/bin/env node
-
-import * as engine from '../../engine';
+import * as engine from '../engine';
 
 engine.youAreWelcome();
 console.log('Find the greatest common divisor of given numbers.');
 
-const userName = engine.getName();
+export const userName = engine.getName();
 
 const findGcd = (num1, num2) => {
   if (num2) {
@@ -15,7 +13,7 @@ const findGcd = (num1, num2) => {
   return Math.abs(num1);
 };
 
-const gcd = (answerCounter) => {
+export const findGsdGame = (answerCounter) => {
   const firstRandomNumber = engine.getRandomNumber();
   const secondRandomNumber = engine.getRandomNumber();
 
@@ -36,5 +34,3 @@ const gcd = (answerCounter) => {
 
   return answerChecker;
 };
-
-engine.gameIteration(gcd, userName);

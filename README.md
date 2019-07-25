@@ -8,8 +8,6 @@ This repository is created and maintained by the team and the community of Hexle
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/3914063ca1def738fcca/maintainability)](https://codeclimate.com/github/nikolaenkoOleg/frontend-project-lvl1/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/3914063ca1def738fcca/test_coverage)](https://codeclimate.com/github/nikolaenkoOleg/frontend-project-lvl1/test_coverage)
-
 [![Build Status](https://travis-ci.org/nikolaenkoOleg/frontend-project-lvl1.svg?branch=master)](https://travis-ci.org/nikolaenkoOleg/frontend-project-lvl1)
 
 ## Setup
