@@ -21,7 +21,7 @@ const getArithmeticProgression = () => {
   return arr;
 };
 
-export const findProgressionElementGame = (answerCounter) => {
+export const findProgressionElementGame = () => {
   const progression = getArithmeticProgression(); // массив с прогрессией
   const randomProgressionIndex = Math.floor(Math.random() * 10);
   /* индекс случайного элемента в
@@ -34,16 +34,6 @@ export const findProgressionElementGame = (answerCounter) => {
   engine.askQuestion(stringProgression);
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
-  const wrongAnswerIndex = 1;
-  let answerChecker = answerCounter;
-  if (userAnswer === correctAnswer) {
-    engine.showCorrectMessage();
-  } else if (userAnswer !== correctAnswer) {
-    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-    answerChecker += wrongAnswerIndex;
-
-    return answerChecker;
-  }
-
-  return answerChecker;
+  const wrongAnswerAcc = 0;
+  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };

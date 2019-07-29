@@ -38,25 +38,30 @@ export const showIncorrectMessage = (userName, userAnswer, correctAnswer) => {
 
 export const getCongratulations = userName => console.log(`\nCongratulations, ${userName}!!!`);
 
-export const checkAnswer = (correctAnswer, userAnswer, userName) => {
+export const checkAnswer = (userName, userAnswer, correctAnswer, wrongAnswerAcc) => {
+  let acc = wrongAnswerAcc;
   if (userAnswer === correctAnswer) {
     showCorrectMessage();
   } else if (userAnswer !== correctAnswer) {
     showIncorrectMessage(userName, userAnswer, correctAnswer);
+    acc += 1;
+
+    return acc;
   }
+
+  return acc;
 };
 
 export const gameIteration = (game, userName) => {
-  let answerChecker = 0;
-  const answerCounter = 0;
+  let wrongAnswerCount = 0;
   const roundsCount = 3;
 
   for (let i = 0; i < roundsCount; i += 1) {
-    answerChecker += game(answerCounter);
-    if (answerChecker === 1) {
+    wrongAnswerCount += game();
+    if (wrongAnswerCount === 1) {
       return;
     }
   }
 
-  if (answerChecker === 0) getCongratulations(userName);
+  if (wrongAnswerCount === 0) getCongratulations(userName);
 };

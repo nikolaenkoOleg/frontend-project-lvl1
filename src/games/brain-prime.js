@@ -24,7 +24,7 @@ const boolToYesNo = (bool) => {
   return result;
 };
 
-export const findPrimeGame = (answerCounter) => {
+export const findPrimeGame = () => {
   const gameItem = engine.getRandomNumber();
   const question = `${gameItem}`;
 
@@ -32,24 +32,7 @@ export const findPrimeGame = (answerCounter) => {
   const userAnswer = engine.getAnswer();
 
   const correctAnswer = boolToYesNo(isPrime(gameItem));
-  const wrongAnswerIndex = 1;
-  let answerChecker = answerCounter;
 
-  if (correctAnswer === 'yes' && userAnswer === 'yes') {
-    engine.showCorrectMessage();
-  } else if (correctAnswer === 'no' && userAnswer === 'yes') {
-    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-    answerChecker += wrongAnswerIndex;
-
-    return answerChecker;
-  } else if (correctAnswer === 'yes' && userAnswer === 'no') {
-    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-    answerChecker += wrongAnswerIndex;
-
-    return answerChecker;
-  } else if (correctAnswer === 'no' && userAnswer === 'no') {
-    engine.showCorrectMessage();
-  }
-
-  return answerChecker;
+  const wrongAnswerAcc = 0;
+  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };

@@ -33,20 +33,8 @@ export const findSolutionGame = () => {
 
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
-  // const wrongAnswerIndex = 1;
-  // let answerChecker = answerCounter;
   const correctAnswer = calculator(first, second, arithmeticSign);
+  const wrongAnswerAcc = 0;
 
-  engine.checkAnswer(userName, userAnswer, correctAnswer);
-
-  // if (userAnswer === correctAnswer) {
-  //   engine.showCorrectMessage();
-  // } else if (userAnswer !== correctAnswer) {
-  //   engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-  //   answerChecker += wrongAnswerIndex;
-
-  //   return answerChecker;
-  // }
-
-  // return answerChecker;
+  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };

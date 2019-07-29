@@ -16,7 +16,7 @@ const findGcd = (num1, num2) => {
   return Math.abs(num1);
 };
 
-export const findGsdGame = (answerCounter) => {
+export const findGsdGame = () => {
   const first = engine.getRandomNumber();
   const second = engine.getRandomNumber();
 
@@ -25,16 +25,6 @@ export const findGsdGame = (answerCounter) => {
   const correctAnswer = findGcd(first, second);
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
-  const wrongAnswerIndex = 1;
-  let answerChecker = answerCounter;
-  if (userAnswer === correctAnswer) {
-    engine.showCorrectMessage();
-  } else if (userAnswer !== correctAnswer) {
-    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-    answerChecker += wrongAnswerIndex;
-
-    return answerChecker;
-  }
-
-  return answerChecker;
+  const wrongAnswerAcc = 0;
+  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };
