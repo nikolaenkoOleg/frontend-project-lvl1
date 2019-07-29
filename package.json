@@ -3,11 +3,11 @@
   "version": "5.0.0",
   "description": "hexlet project",
   "bin": {
-    "brain-even": "dist/bin/brain-even.bin.js",
-    "brain-calc": "dist/bin/brain-calc.bin.js",
-    "brain-gcd": "dist/bin/brain-gcd.bin.js",
-    "brain-prog": "dist/bin/brain-progression.bin.js",
-    "brain-prime": "dist/bin/brain-prime.bin.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js",
+    "brain-gcd": "dist/bin/brain-gcd.js",
+    "brain-prog": "dist/bin/brain-progression.js",
+    "brain-prime": "dist/bin/brain-prime.js"
   },
   "engines": {
     "node": ">=8"
@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "NODE_ENV=production babel src --out-dir dist",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -41,15 +41,14 @@
     "readline-sync": "^1.4.9"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-eslint": "^10.0.2",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.13.6",
-    "eslint-plugin-lodash-fp": "^2.2.0-a1"
+    "eslint-plugin-import": "^2.18.2"
   }
 }

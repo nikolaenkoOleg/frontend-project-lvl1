@@ -6,6 +6,7 @@ engine.youAreWelcome();
 console.log('What number is missing in the progression?');
 
 export const userName = engine.getName();
+engine.greetingUser(userName);
 
 const getArithmeticProgression = () => {
   const startProgression = engine.getRandomNumber(); // определяем стартовое число прогрессии
@@ -30,7 +31,7 @@ export const findProgressionElementGame = (answerCounter) => {
   progression[randomProgressionIndex] = '..'; // и меняем его на двоеточие
 
   const stringProgression = progression.join(' '); // прогрессия в виде строки для пользователя
-  console.log(`Question: ${stringProgression}`);
+  engine.askQuestion(stringProgression);
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
   const wrongAnswerIndex = 1;

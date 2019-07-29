@@ -1,48 +1,52 @@
+#!/usr/bin/env node
+
 import * as engine from '../engine';
 
 engine.youAreWelcome();
 console.log('What is the result of the expression?');
 
 export const userName = engine.getName();
-engine.greetingUser();
+engine.greetingUser(userName);
 
 const calculator = (num1, num2, symbol) => {
-  let value = 0;
+  let result = 0;
   if (symbol === '-') {
-    value = num1 - num2;
+    result = num1 - num2;
   } else if (symbol === '+') {
-    value = num1 + num2;
+    result = num1 + num2;
   } else if (symbol === '*') {
-    value = num1 * num2;
+    result = num1 * num2;
   }
 
-  return value;
+  return result;
 };
 
-export const findSolutionGame = (answerCounter) => {
-  const firstRandomNumber = engine.getRandomNumber();
-  const secondRandomNumber = engine.getRandomNumber();
+export const findSolutionGame = () => {
+  const first = engine.getRandomNumber();
+  const second = engine.getRandomNumber();
 
-  const arithmeticSymbols = ['-', '+', '*'];
-  const randomSymbolIndex = Math.floor(Math.random() * arithmeticSymbols.length);
-  const randomSymbol = arithmeticSymbols[randomSymbolIndex];
-  const question = firstRandomNumber + randomSymbol + secondRandomNumber;
+  const arithmeticSigns = ['-', '+', '*'];
+  const randomSignIndex = Math.floor(Math.random() * arithmeticSigns.length);
+  const arithmeticSign = arithmeticSigns[randomSignIndex];
+  const question = `${first} ${arithmeticSign} ${second}`;
   engine.askQuestion(question);
 
   const userAnswer = parseInt(engine.getAnswer(), 10);
 
-  const wrongAnswerIndex = 1;
-  let answerChecker = answerCounter;
-  const correctAnswer = calculator(firstRandomNumber, secondRandomNumber, randomSymbol);
+  // const wrongAnswerIndex = 1;
+  // let answerChecker = answerCounter;
+  const correctAnswer = calculator(first, second, arithmeticSign);
 
-  if (userAnswer === correctAnswer) {
-    engine.showCorrectMessage();
-  } else if (userAnswer !== correctAnswer) {
-    engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
-    answerChecker += wrongAnswerIndex;
+  engine.checkAnswer(userName, userAnswer, correctAnswer);
 
-    return answerChecker;
-  }
+  // if (userAnswer === correctAnswer) {
+  //   engine.showCorrectMessage();
+  // } else if (userAnswer !== correctAnswer) {
+  //   engine.showIncorrectMessage(userName, userAnswer, correctAnswer);
+  //   answerChecker += wrongAnswerIndex;
 
-  return answerChecker;
+  //   return answerChecker;
+  // }
+
+  // return answerChecker;
 };

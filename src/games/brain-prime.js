@@ -6,6 +6,7 @@ engine.youAreWelcome();
 console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
 export const userName = engine.getName();
+engine.greetingUser(userName);
 
 const isPrime = (number) => {
   if (number === 0 || number === 1) return false;
@@ -24,11 +25,13 @@ const boolToYesNo = (bool) => {
 };
 
 export const findPrimeGame = (answerCounter) => {
-  const randomNumber = engine.getRandomNumber();
-  console.log(`Question: ${randomNumber}`);
+  const gameItem = engine.getRandomNumber();
+  const question = `${gameItem}`;
+
+  engine.askQuestion(question);
   const userAnswer = engine.getAnswer();
 
-  const correctAnswer = boolToYesNo(isPrime(randomNumber));
+  const correctAnswer = boolToYesNo(isPrime(gameItem));
   const wrongAnswerIndex = 1;
   let answerChecker = answerCounter;
 
