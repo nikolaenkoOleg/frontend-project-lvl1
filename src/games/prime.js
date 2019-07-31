@@ -18,12 +18,6 @@ const isPrime = (number) => {
   return true;
 };
 
-const boolToYesNo = (bool) => {
-  const result = bool ? 'yes' : 'no';
-
-  return result;
-};
-
 export const findPrimeGame = () => {
   const gameItem = engine.getRandomNumber();
   const question = `${gameItem}`;
@@ -31,7 +25,7 @@ export const findPrimeGame = () => {
   engine.askQuestion(question);
   const userAnswer = engine.getAnswer();
 
-  const correctAnswer = boolToYesNo(isPrime(gameItem));
+  const correctAnswer = engine.boolToYesNo(isPrime(gameItem));
 
   const wrongAnswerAcc = 0;
   return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);

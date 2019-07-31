@@ -23,7 +23,7 @@ const getArithmeticProgression = () => {
 
 export const findProgressionElementGame = () => {
   const progression = getArithmeticProgression(); // массив с прогрессией
-  const randomProgressionIndex = Math.floor(Math.random() * 10);
+  const randomProgressionIndex = engine.getRandomNumber(10);
   /* индекс случайного элемента в
      массиве от 0 до 10 */
 

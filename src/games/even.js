@@ -8,14 +8,13 @@ console.log('Answer "yes" if number even otherwise answer "no".');
 export const userName = engine.getName();
 engine.greetingUser(userName);
 
-const getCorrectAnswer = (divisor, item) => {
-  let result = '';
-  if (item % divisor === 0) {
-    result = 'yes';
-    return result;
+const isEven = (num) => {
+  const divisor = 2;
+  if (num % divisor === 0) {
+    return true;
   }
-  result = 'no';
-  return result;
+
+  return false;
 };
 
 export const findEvenGame = () => {
@@ -23,9 +22,8 @@ export const findEvenGame = () => {
   engine.askQuestion(gameItem);
 
   const userAnswer = engine.getAnswer();
-  const wrongAnswerAcc = 0;
-  const parirtyDivisor = 2;
-  const correctAnswer = getCorrectAnswer(parirtyDivisor, gameItem);
+  const correctAnswer = engine.boolToYesNo(isEven(gameItem));
 
+  const wrongAnswerAcc = 0;
   return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };

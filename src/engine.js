@@ -20,11 +20,7 @@ export const getAnswer = () => {
   return userAnswer;
 };
 
-export const getRandomNumber = () => {
-  const randomizer = 42;
-
-  return Math.floor(Math.random() * (Math.random() * randomizer));
-};
+export const getRandomNumber = (range = 10) => Math.floor(Math.random() * range);
 
 export const askQuestion = (question) => {
   console.log(`Question: ${question}`);
@@ -34,6 +30,12 @@ export const showCorrectMessage = () => console.log('Correct!');
 
 export const showIncorrectMessage = (userName, userAnswer, correctAnswer) => {
   console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}.`);
+};
+
+export const boolToYesNo = (bool) => {
+  const result = bool ? 'yes' : 'no';
+
+  return result;
 };
 
 export const getCongratulations = userName => console.log(`\nCongratulations, ${userName}!!!`);

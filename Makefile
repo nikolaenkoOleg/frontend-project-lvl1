@@ -2,7 +2,7 @@ install:
 	npm install
 
 run:
-	npx babel-node src/bin/brain-progression.js
+	npx babel-node src/bin/brain-calc.js
 
 install-deps:
 	npm install
