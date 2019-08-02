@@ -10,6 +10,28 @@ export const getName = () => {
   return userName;
 };
 
+export const showGameDescription = (gameTitle) => {
+  switch (gameTitle) {
+    case 'brain-even':
+      console.log('Answer "yes" if number even otherwise answer "no".');
+      break;
+    case 'brain-calc':
+      console.log('What is the result of the expression?');
+      break;
+    case 'brain-gcd':
+      console.log('Find the greatest common divisor of given numbers.');
+      break;
+    case 'brain-prime':
+      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+      break;
+    case 'brain-progression':
+      console.log('What number is missing in the progression?');
+      break;
+    default:
+      break;
+  }
+};
+
 export const greetingUser = (name) => {
   console.log(`Hello, ${name}\n`);
 };

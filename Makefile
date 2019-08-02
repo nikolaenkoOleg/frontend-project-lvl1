@@ -2,7 +2,7 @@ install:
 	npm install
 
 run:
-	npx babel-node src/bin/brain-calc.js
+	npx babel-node src/bin/brain-even.js
 
 install-deps:
 	npm install

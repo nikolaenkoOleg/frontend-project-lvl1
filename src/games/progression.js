@@ -3,19 +3,19 @@
 import * as engine from '../engine';
 
 engine.youAreWelcome();
-console.log('What number is missing in the progression?');
+engine.showGameDescription('brain-progression');
 
 export const userName = engine.getName();
 engine.greetingUser(userName);
 
 const getArithmeticProgression = () => {
-  const startProgression = engine.getRandomNumber(); // определяем стартовое число прогрессии
-  const stepProgression = engine.getRandomNumber(); // определяем шаг прогрессии
+  const startProgression = engine.getRandomNumber();
+  const stepProgression = engine.getRandomNumber();
   const progressionSize = 10;
 
-  const arr = [startProgression]; // спросить про const тут...
-  for (let i = 1; i < progressionSize; i += 1) {
-    arr[i] = arr[i - 1] + stepProgression; // тут формируется массив с арифметической прогрессией
+  const arr = [];
+  for (let i = 0; i < progressionSize; i += 1) {
+    arr[i] = startProgression + (stepProgression * i);
   }
 
   return arr;
@@ -26,7 +26,6 @@ export const findProgressionElementGame = () => {
   const randomProgressionIndex = engine.getRandomNumber(10);
   /* индекс случайного элемента в
      массиве от 0 до 10 */
-
   const correctAnswer = progression[randomProgressionIndex]; // формируем правильный ответ...
   progression[randomProgressionIndex] = '..'; // и меняем его на двоеточие
 
