@@ -3,7 +3,7 @@
 import * as engine from '../engine';
 
 engine.youAreWelcome();
-console.log('What is the result of the expression?');
+engine.showGameDescription('brain-calc');
 
 export const userName = engine.getName();
 engine.greetingUser(userName);

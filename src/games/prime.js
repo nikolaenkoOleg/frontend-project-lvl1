@@ -3,7 +3,7 @@
 import * as engine from '../engine';
 
 engine.youAreWelcome();
-console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+engine.showGameDescription('brain-prime');
 
 export const userName = engine.getName();
 engine.greetingUser(userName);

@@ -3,7 +3,7 @@
 import * as engine from '../engine';
 
 engine.youAreWelcome();
-console.log('Answer "yes" if number even otherwise answer "no".');
+engine.showGameDescription('brain-even');
 
 export const userName = engine.getName();
 engine.greetingUser(userName);
@@ -28,4 +28,6 @@ export const findEvenGame = () => {
   return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };
 
-engine.gameIteration(findEvenGame, userName);
+export const play = () => {
+  engine.gameIteration(findEvenGame, userName);
+};

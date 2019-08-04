@@ -3,7 +3,7 @@
 import * as engine from '../engine';
 
 engine.youAreWelcome();
-console.log('Find the greatest common divisor of given numbers.');
+engine.showGameDescription('brain-gcd');
 
 export const userName = engine.getName();
 engine.greetingUser(userName);
