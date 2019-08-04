@@ -1,16 +1,6 @@
 import readlineSync from 'readline-sync';
 
-export const youAreWelcome = () => {
-  console.log('Welcome to the Brain Games!');
-};
-
-export const getName = () => {
-  const userName = readlineSync.question('\nMay I have your name? ');
-
-  return userName;
-};
-
-export const showGameDescription = (gameTitle) => {
+export const showGameRules = (gameTitle) => {
   switch (gameTitle) {
     case 'brain-even':
       console.log('Answer "yes" if number even otherwise answer "no".');
@@ -32,27 +22,7 @@ export const showGameDescription = (gameTitle) => {
   }
 };
 
-export const greetingUser = (name) => {
-  console.log(`Hello, ${name}\n`);
-};
-
-export const getAnswer = () => {
-  const userAnswer = readlineSync.question('Your answer: ');
-
-  return userAnswer;
-};
-
 export const getRandomNumber = (range = 10) => Math.floor(Math.random() * range);
-
-export const askQuestion = (question) => {
-  console.log(`Question: ${question}`);
-};
-
-export const showCorrectMessage = () => console.log('Correct!');
-
-export const showIncorrectMessage = (userName, userAnswer, correctAnswer) => {
-  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}.`);
-};
 
 export const boolToYesNo = (bool) => {
   const result = bool ? 'yes' : 'no';
@@ -60,32 +30,45 @@ export const boolToYesNo = (bool) => {
   return result;
 };
 
-export const getCongratulations = userName => console.log(`\nCongratulations, ${userName}!!!`);
+export const checkAnswer = (userName, userAnswer, correctAnswer) => {
+  let incorrectAnswerCounter = 0;
 
-export const checkAnswer = (userName, userAnswer, correctAnswer, wrongAnswerAcc) => {
-  let acc = wrongAnswerAcc;
   if (userAnswer === correctAnswer) {
-    showCorrectMessage();
+    console.log('Correct!');
   } else if (userAnswer !== correctAnswer) {
-    showIncorrectMessage(userName, userAnswer, correctAnswer);
-    acc += 1;
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}.`);
+    incorrectAnswerCounter += 1;
 
-    return acc;
+    return incorrectAnswerCounter;
   }
 
-  return acc;
+  return incorrectAnswerCounter;
 };
 
-export const gameIteration = (game, userName) => {
-  let wrongAnswerCount = 0;
+export const playRound = (question, correctAnswer, userName) => {
+  console.log(`Question: ${question}`);
+  const userAnswer = readlineSync.question('Your answer: ');
+  const incorrectAnswerCount = checkAnswer(userName, userAnswer, correctAnswer);
+
+  return incorrectAnswerCount;
+};
+
+export const playGame = (gameTitle, question, correctAnswer) => {
+  console.log('Welcome to the Brain Games!');
+  showGameRules(gameTitle);
+
+  const userName = readlineSync.question('\nMay I have your name? ');
+  console.log(`Hello, ${userName}\n`);
+
   const roundsCount = 3;
+  let incorrectAnswerCount = 0;
 
   for (let i = 0; i < roundsCount; i += 1) {
-    wrongAnswerCount += game();
-    if (wrongAnswerCount === 1) {
+    incorrectAnswerCount += playRound(question, correctAnswer, userName);
+    if (incorrectAnswerCount === 1) {
       return;
     }
   }
 
-  if (wrongAnswerCount === 0) getCongratulations(userName);
+  if (incorrectAnswerCount === 0) console.log(`\nCongratulations, ${userName}!!!`);
 };

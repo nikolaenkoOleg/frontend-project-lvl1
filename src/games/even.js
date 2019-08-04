@@ -2,12 +2,6 @@
 
 import * as engine from '../engine';
 
-engine.youAreWelcome();
-engine.showGameDescription('brain-even');
-
-export const userName = engine.getName();
-engine.greetingUser(userName);
-
 const isEven = (num) => {
   const divisor = 2;
   if (num % divisor === 0) {
@@ -17,17 +11,10 @@ const isEven = (num) => {
   return false;
 };
 
-export const findEvenGame = () => {
-  const gameItem = engine.getRandomNumber();
-  engine.askQuestion(gameItem);
+const gameItem = engine.getRandomNumber();
+const question = gameItem;
+const correctAnswer = engine.boolToYesNo(isEven(gameItem));
 
-  const userAnswer = engine.getAnswer();
-  const correctAnswer = engine.boolToYesNo(isEven(gameItem));
-
-  const wrongAnswerAcc = 0;
-  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
-};
-
-export const play = () => {
-  engine.gameIteration(findEvenGame, userName);
+export default () => {
+  engine.playGame('brain-even', question, correctAnswer);
 };
