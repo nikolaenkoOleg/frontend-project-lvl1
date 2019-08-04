@@ -27,3 +27,5 @@ export const findEvenGame = () => {
   const wrongAnswerAcc = 0;
   return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
 };
+
+engine.gameIteration(findEvenGame, userName);
