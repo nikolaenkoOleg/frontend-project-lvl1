@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import * as engine from '../engine';
-import { findSolutionGame, userName } from '../games/calc';
+import play from '../games/calc';
 
-engine.gameIteration(findSolutionGame, userName);
+play();

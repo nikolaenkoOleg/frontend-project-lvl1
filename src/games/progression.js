@@ -2,12 +2,6 @@
 
 import * as engine from '../engine';
 
-engine.youAreWelcome();
-engine.showGameDescription('brain-progression');
-
-export const userName = engine.getName();
-engine.greetingUser(userName);
-
 const getArithmeticProgression = () => {
   const startProgression = engine.getRandomNumber();
   const stepProgression = engine.getRandomNumber();
@@ -21,18 +15,15 @@ const getArithmeticProgression = () => {
   return arr;
 };
 
-export const findProgressionElementGame = () => {
-  const progression = getArithmeticProgression(); // массив с прогрессией
-  const randomProgressionIndex = engine.getRandomNumber(10);
-  /* индекс случайного элемента в
-     массиве от 0 до 10 */
-  const correctAnswer = progression[randomProgressionIndex]; // формируем правильный ответ...
-  progression[randomProgressionIndex] = '..'; // и меняем его на двоеточие
+const randomProgressionIndex = engine.getRandomNumber();
+export default () => {
+  const createQuestion = () => {
+    const progression = getArithmeticProgression();
+    progression[randomProgressionIndex] = '..';
 
-  const stringProgression = progression.join(' '); // прогрессия в виде строки для пользователя
-  engine.askQuestion(stringProgression);
-  const userAnswer = parseInt(engine.getAnswer(), 10);
+    return progression.join(' ');
+  };
+  const createAnswer = progression => String(progression[randomProgressionIndex]);
 
-  const wrongAnswerAcc = 0;
-  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
+  engine.playGame('brain-progression', createQuestion, createAnswer);
 };

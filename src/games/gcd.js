@@ -2,29 +2,27 @@
 
 import * as engine from '../engine';
 
-engine.youAreWelcome();
-engine.showGameDescription('brain-gcd');
-
-export const userName = engine.getName();
-engine.greetingUser(userName);
-
 const findGcd = (num1, num2) => {
   if (num2) {
     return findGcd(num2, num1 % num2);
   }
 
-  return Math.abs(num1);
+  return String(Math.abs(num1));
 };
 
-export const findGsdGame = () => {
-  const first = engine.getRandomNumber();
-  const second = engine.getRandomNumber();
+export default () => {
+  const createQuestion = () => {
+    const first = engine.getRandomNumber(20);
+    const second = engine.getRandomNumber(20);
 
-  const question = `${first} ${second}`;
-  engine.askQuestion(question);
-  const correctAnswer = findGcd(first, second);
-  const userAnswer = parseInt(engine.getAnswer(), 10);
+    return `${first} ${second}`;
+  };
+  const createAnswer = (question) => {
+    const first = 0;
+    const second = 2;
 
-  const wrongAnswerAcc = 0;
-  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
+    return findGcd(parseInt(question[first], 10), parseInt(question[second], 10));
+  };
+
+  engine.playGame('brain-gcd', createQuestion, createAnswer);
 };

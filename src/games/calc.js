@@ -2,12 +2,6 @@
 
 import * as engine from '../engine';
 
-engine.youAreWelcome();
-engine.showGameDescription('brain-calc');
-
-export const userName = engine.getName();
-engine.greetingUser(userName);
-
 const getCorrectAnswer = (num1, num2, sign) => {
   let result = 0;
   if (sign === '-') {
@@ -18,24 +12,31 @@ const getCorrectAnswer = (num1, num2, sign) => {
     result = num1 * num2;
   }
 
-  return result;
+  return String(result);
 };
 
 const arithmeticSigns = ['-', '+', '*'];
+const randomSignIndex = engine.getRandomNumber(arithmeticSigns.length);
+const arithmeticSign = arithmeticSigns[randomSignIndex];
 
-export const findSolutionGame = () => {
-  const first = engine.getRandomNumber();
-  const second = engine.getRandomNumber();
+export default () => {
+  const createQuestion = () => {
+    const first = engine.getRandomNumber();
+    const second = engine.getRandomNumber();
 
-  const randomSignIndex = engine.getRandomNumber(arithmeticSigns.length);
-  const arithmeticSign = arithmeticSigns[randomSignIndex];
-  const question = `${first} ${arithmeticSign} ${second}`;
-  engine.askQuestion(question);
+    return `${first} ${arithmeticSign} ${second}`;
+  };
+  const createAnswer = (question) => {
+    const first = 0;
+    const second = 4;
+    const sign = 2;
 
-  const userAnswer = parseInt(engine.getAnswer(), 10);
+    return getCorrectAnswer(
+      parseInt(question[first], 10),
+      parseInt(question[second], 10),
+      question[sign],
+    );
+  };
 
-  const correctAnswer = getCorrectAnswer(first, second, arithmeticSign);
-  const wrongAnswerAcc = 0;
-
-  return engine.checkAnswer(userName, userAnswer, correctAnswer, wrongAnswerAcc);
+  engine.playGame('brain-calc', createQuestion, createAnswer);
 };
