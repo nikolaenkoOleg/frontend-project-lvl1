@@ -10,19 +10,17 @@ const findGcd = (num1, num2) => {
   return String(Math.abs(num1));
 };
 
+const createGameData = (num1, num2) => {
+  const gameData = {
+    question: `${num1} ${num2}`,
+    answer: findGcd(num1, num2),
+  };
+
+  return gameData;
+};
+
 export default () => {
-  const createQuestion = () => {
-    const first = engine.getRandomNumber(20);
-    const second = engine.getRandomNumber(20);
+  const createQuestion = () => createGameData(engine.getRandomNumber(), engine.getRandomNumber());
 
-    return `${first} ${second}`;
-  };
-  const createAnswer = (question) => {
-    const first = 0;
-    const second = 2;
-
-    return findGcd(parseInt(question[first], 10), parseInt(question[second], 10));
-  };
-
-  engine.playGame('brain-gcd', createQuestion, createAnswer);
+  engine.playGame('brain-gcd', createQuestion);
 };

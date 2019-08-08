@@ -15,15 +15,24 @@ const getArithmeticProgression = () => {
   return arr;
 };
 
-const randomProgressionIndex = engine.getRandomNumber();
-export default () => {
-  const createQuestion = () => {
-    const progression = getArithmeticProgression();
-    progression[randomProgressionIndex] = '..';
+const createGameData = (progression) => {
+  const fullArray = progression;
+  let arrWithHiddenElement = [];
+  const randomProgressionIndex = engine.getRandomNumber();
+  const hiddenElement = fullArray[randomProgressionIndex];
 
-    return progression.join(' ');
+  arrWithHiddenElement = fullArray;
+  arrWithHiddenElement[randomProgressionIndex] = '..';
+  const gameData = {
+    question: arrWithHiddenElement.join(' '),
+    answer: hiddenElement,
   };
-  const createAnswer = progression => String(progression[randomProgressionIndex]);
 
-  engine.playGame('brain-progression', createQuestion, createAnswer);
+  return gameData;
+};
+
+export default () => {
+  const createQuestion = () => createGameData(getArithmeticProgression());
+
+  engine.playGame('brain-progression', createQuestion);
 };

@@ -2,19 +2,27 @@
 
 import * as engine from '../engine';
 
-const isPrime = (number) => {
-  if (number === 0 || number === 1) return false;
+const isPrime = (num) => {
+  if (num === 0 || num === 1) return false;
 
-  for (let i = 2; i < number; i += 1) {
-    if (number % i === 0) return false;
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) return false;
   }
 
   return true;
 };
 
-export default () => {
-  const createQuestion = () => engine.getRandomNumber();
-  const createAnswer = question => engine.boolToYesNo(isPrime(question));
+const createGameData = (num) => {
+  const gameData = {
+    question: num,
+    answer: engine.boolToYesNo(isPrime(num)),
+  };
 
-  engine.playGame('brain-prime', createQuestion, createAnswer);
+  return gameData;
+};
+
+export default () => {
+  const createQuestion = () => createGameData(engine.getRandomNumber());
+
+  engine.playGame('brain-prime', createQuestion);
 };

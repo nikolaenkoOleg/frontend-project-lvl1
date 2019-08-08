@@ -48,12 +48,12 @@ export const checkAnswer = (userName, userAnswer, correctAnswer) => {
 export const playRound = (questionForUser, correctAnswer, userName) => {
   console.log(`Question: ${questionForUser}`);
   const userAnswer = readlineSync.question('Your answer: ');
-  const incorrectAnswerCount = checkAnswer(userName, userAnswer, correctAnswer);
+  const incorrectAnswerCount = checkAnswer(userName, userAnswer, String(correctAnswer));
 
   return incorrectAnswerCount;
 };
 
-export const playGame = (gameTitle, createQuestion, createCorrectAnswer) => {
+export const playGame = (gameTitle, getQuestion) => {
   console.log('Welcome to the Brain Games!');
   showGameRules(gameTitle);
 
@@ -64,8 +64,8 @@ export const playGame = (gameTitle, createQuestion, createCorrectAnswer) => {
   let incorrectAnswerCount = 0;
 
   for (let i = 0; i < roundsCount; i += 1) {
-    const gameItem = createQuestion();
-    incorrectAnswerCount += playRound(gameItem, createCorrectAnswer(gameItem), userName);
+    const gameData = getQuestion();
+    incorrectAnswerCount += playRound(gameData.question, gameData.answer, userName);
     if (incorrectAnswerCount === 1) {
       return;
     }

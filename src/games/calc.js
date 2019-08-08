@@ -16,27 +16,22 @@ const getCorrectAnswer = (num1, num2, sign) => {
 };
 
 const arithmeticSigns = ['-', '+', '*'];
-const randomSignIndex = engine.getRandomNumber(arithmeticSigns.length);
-const arithmeticSign = arithmeticSigns[randomSignIndex];
+
+const createGameData = () => {
+  const first = engine.getRandomNumber();
+  const second = engine.getRandomNumber();
+  const randomSignIndex = engine.getRandomNumber(arithmeticSigns.length);
+  const arithmeticSign = arithmeticSigns[randomSignIndex];
+  const gameData = {
+    question: `${first} ${arithmeticSign} ${second}`,
+    answer: getCorrectAnswer(first, second, arithmeticSign),
+  };
+
+  return gameData;
+};
 
 export default () => {
-  const createQuestion = () => {
-    const first = engine.getRandomNumber();
-    const second = engine.getRandomNumber();
+  const createQuestion = () => createGameData();
 
-    return `${first} ${arithmeticSign} ${second}`;
-  };
-  const createAnswer = (question) => {
-    const first = 0;
-    const second = 4;
-    const sign = 2;
-
-    return getCorrectAnswer(
-      parseInt(question[first], 10),
-      parseInt(question[second], 10),
-      question[sign],
-    );
-  };
-
-  engine.playGame('brain-calc', createQuestion, createAnswer);
+  engine.playGame('brain-calc', createQuestion);
 };

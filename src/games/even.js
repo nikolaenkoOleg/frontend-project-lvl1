@@ -11,9 +11,17 @@ const isEven = (num) => {
   return false;
 };
 
-export default () => {
-  const createQuestion = () => engine.getRandomNumber();
-  const createAnswer = question => engine.boolToYesNo(isEven(question));
+const createGameData = (num) => {
+  const gameData = {
+    question: num,
+    answer: engine.boolToYesNo(isEven(num)),
+  };
 
-  engine.playGame('brain-even', createQuestion, createAnswer);
+  return gameData;
+};
+
+export default () => {
+  const createQuestion = () => createGameData(engine.getRandomNumber());
+
+  engine.playGame('brain-even', createQuestion);
 };
