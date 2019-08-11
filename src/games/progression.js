@@ -2,21 +2,22 @@
 
 import * as engine from '../engine';
 
-const getArithmeticProgression = () => {
+const progressionSize = 10;
+
+const getProgression = (size) => {
   const startProgression = engine.getRandomNumber();
   const stepProgression = engine.getRandomNumber();
-  const progressionSize = 10;
 
-  const arr = [];
-  for (let i = 0; i < progressionSize; i += 1) {
-    arr[i] = startProgression + (stepProgression * i);
+  const progression = [];
+  for (let i = 0; i < size; i += 1) {
+    progression[i] = startProgression + (stepProgression * i);
   }
 
-  return arr;
+  return progression;
 };
 
-const createGameData = (progression) => {
-  const fullArray = progression;
+const createGameData = () => {
+  const fullArray = getProgression(progressionSize);
   let arrWithHiddenElement = [];
   const randomProgressionIndex = engine.getRandomNumber();
   const hiddenElement = fullArray[randomProgressionIndex];
@@ -32,7 +33,8 @@ const createGameData = (progression) => {
 };
 
 export default () => {
-  const createQuestion = () => createGameData(getArithmeticProgression());
+  const createQuestion = () => createGameData();
+  const gameTitle = 'What number is missing in the progression?';
 
-  engine.playGame('brain-progression', createQuestion);
+  engine.playGame(gameTitle, createQuestion);
 };

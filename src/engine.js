@@ -1,61 +1,10 @@
 import readlineSync from 'readline-sync';
 
-export const showGameRules = (gameTitle) => {
-  switch (gameTitle) {
-    case 'brain-even':
-      console.log('Answer "yes" if number even otherwise answer "no".');
-      break;
-    case 'brain-calc':
-      console.log('What is the result of the expression?');
-      break;
-    case 'brain-gcd':
-      console.log('Find the greatest common divisor of given numbers.');
-      break;
-    case 'brain-prime':
-      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-      break;
-    case 'brain-progression':
-      console.log('What number is missing in the progression?');
-      break;
-    default:
-      break;
-  }
-};
-
 export const getRandomNumber = (range = 10) => Math.floor(Math.random() * range);
-
-export const boolToYesNo = (bool) => {
-  const result = bool ? 'yes' : 'no';
-
-  return result;
-};
-
-export const checkAnswer = (userName, userAnswer, correctAnswer) => {
-  let incorrectAnswerCounter = 0;
-
-  if (userAnswer === correctAnswer) {
-    console.log('Correct!');
-  } else if (userAnswer !== correctAnswer) {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}.`);
-    incorrectAnswerCounter += 1;
-
-    return incorrectAnswerCounter;
-  }
-
-  return incorrectAnswerCounter;
-};
-
-export const playRound = (questionForUser, correctAnswer, userName) => {
-  console.log(`Question: ${questionForUser}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const incorrectAnswerCount = checkAnswer(userName, userAnswer, String(correctAnswer));
-
-  return incorrectAnswerCount;
-};
 
 export const playGame = (gameTitle, getQuestion) => {
   console.log('Welcome to the Brain Games!');
-  showGameRules(gameTitle);
+  console.log(gameTitle);
 
   const userName = readlineSync.question('\nMay I have your name? ');
   console.log(`Hello, ${userName}\n`);
@@ -65,11 +14,22 @@ export const playGame = (gameTitle, getQuestion) => {
 
   for (let i = 0; i < roundsCount; i += 1) {
     const gameData = getQuestion();
-    incorrectAnswerCount += playRound(gameData.question, gameData.answer, userName);
+    const { question } = gameData;
+    const { answer } = gameData;
+    console.log(`Question: ${question}`);
+
+    const userAnswer = readlineSync.question('Your answer: ');
+
+    if (userAnswer === answer) {
+      console.log('Correct!');
+    } else if (userAnswer !== answer) {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'. \nLet's try again, ${userName}.`);
+      incorrectAnswerCount += 1;
+    }
     if (incorrectAnswerCount === 1) {
       return;
     }
   }
 
-  if (incorrectAnswerCount === 0) console.log(`\nCongratulations, ${userName}!!!`);
+  console.log(`\nCongratulations, ${userName}!!!`);
 };

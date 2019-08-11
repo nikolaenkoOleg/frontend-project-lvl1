@@ -12,19 +12,18 @@ const getCorrectAnswer = (num1, num2, sign) => {
     result = num1 * num2;
   }
 
-  return String(result);
+  return result;
 };
 
-const arithmeticSigns = ['-', '+', '*'];
+const sign = ['-', '+', '*'];
 
 const createGameData = () => {
   const first = engine.getRandomNumber();
   const second = engine.getRandomNumber();
-  const randomSignIndex = engine.getRandomNumber(arithmeticSigns.length);
-  const arithmeticSign = arithmeticSigns[randomSignIndex];
+  const arithmeticSign = sign[engine.getRandomNumber(sign.length)];
   const gameData = {
     question: `${first} ${arithmeticSign} ${second}`,
-    answer: getCorrectAnswer(first, second, arithmeticSign),
+    answer: String(getCorrectAnswer(first, second, arithmeticSign)),
   };
 
   return gameData;
@@ -32,6 +31,7 @@ const createGameData = () => {
 
 export default () => {
   const createQuestion = () => createGameData();
+  const gameTitle = 'What is the result of the expression?';
 
-  engine.playGame('brain-calc', createQuestion);
+  engine.playGame(gameTitle, createQuestion);
 };

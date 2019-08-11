@@ -7,20 +7,23 @@ const findGcd = (num1, num2) => {
     return findGcd(num2, num1 % num2);
   }
 
-  return String(Math.abs(num1));
+  return Math.abs(num1);
 };
 
-const createGameData = (num1, num2) => {
+const createGameData = () => {
+  const first = engine.getRandomNumber();
+  const second = engine.getRandomNumber();
   const gameData = {
-    question: `${num1} ${num2}`,
-    answer: findGcd(num1, num2),
+    question: `${first} ${second}`,
+    answer: String(findGcd(first, second)),
   };
 
   return gameData;
 };
 
 export default () => {
-  const createQuestion = () => createGameData(engine.getRandomNumber(), engine.getRandomNumber());
+  const createQuestion = () => createGameData();
+  const gameTitle = 'Find the greatest common divisor of given numbers.';
 
-  engine.playGame('brain-gcd', createQuestion);
+  engine.playGame(gameTitle, createQuestion);
 };

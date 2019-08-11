@@ -4,24 +4,29 @@ import * as engine from '../engine';
 
 const isEven = (num) => {
   const divisor = 2;
-  if (num % divisor === 0) {
-    return true;
-  }
 
-  return false;
+  return num % divisor === 0;
 };
 
-const createGameData = (num) => {
+const boolToYesNo = (bool) => {
+  const result = bool ? 'yes' : 'no';
+
+  return result;
+};
+
+const createGameData = () => {
+  const gameItem = engine.getRandomNumber();
   const gameData = {
-    question: num,
-    answer: engine.boolToYesNo(isEven(num)),
+    question: gameItem,
+    answer: boolToYesNo(isEven(gameItem)),
   };
 
   return gameData;
 };
 
 export default () => {
-  const createQuestion = () => createGameData(engine.getRandomNumber());
+  const createQuestion = () => createGameData();
+  const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
 
-  engine.playGame('brain-even', createQuestion);
+  engine.playGame(gameTitle, createQuestion);
 };

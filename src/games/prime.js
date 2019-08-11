@@ -3,7 +3,7 @@
 import * as engine from '../engine';
 
 const isPrime = (num) => {
-  if (num === 0 || num === 1) return false;
+  if (num < 2) return false;
 
   for (let i = 2; i < num; i += 1) {
     if (num % i === 0) return false;
@@ -12,17 +12,25 @@ const isPrime = (num) => {
   return true;
 };
 
-const createGameData = (num) => {
+const boolToYesNo = (bool) => {
+  const result = bool ? 'yes' : 'no';
+
+  return result;
+};
+
+const createGameData = () => {
+  const gameitem = engine.getRandomNumber(20);
   const gameData = {
-    question: num,
-    answer: engine.boolToYesNo(isPrime(num)),
+    question: gameitem,
+    answer: boolToYesNo(isPrime(gameitem)),
   };
 
   return gameData;
 };
 
 export default () => {
-  const createQuestion = () => createGameData(engine.getRandomNumber());
+  const createQuestion = () => createGameData();
+  const gameTitle = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  engine.playGame('brain-prime', createQuestion);
+  engine.playGame(gameTitle, createQuestion);
 };
