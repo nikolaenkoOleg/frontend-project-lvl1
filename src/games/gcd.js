@@ -2,12 +2,12 @@
 
 import * as engine from '../engine';
 
-const findGcd = (num1, num2) => {
-  if (num2) {
-    return findGcd(num2, num1 % num2);
+const findGcd = (first, second) => {
+  if (second) {
+    return findGcd(second, first % second);
   }
 
-  return Math.abs(num1);
+  return Math.abs(first);
 };
 
 const createGameData = () => {

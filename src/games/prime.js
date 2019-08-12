@@ -2,18 +2,18 @@
 
 import * as engine from '../engine';
 
-const isPrime = (num) => {
-  if (num < 2) return false;
+const isPrime = (item) => {
+  if (item < 2) return false;
 
-  for (let i = 2; i < num; i += 1) {
-    if (num % i === 0) return false;
+  for (let i = 2; i < Math.round(item / 2); i += 1) {
+    if (item % i === 0) return false;
   }
 
   return true;
 };
 
-const boolToYesNo = (bool) => {
-  const result = bool ? 'yes' : 'no';
+const boolToYesNo = (predicate) => {
+  const result = predicate ? 'yes' : 'no';
 
   return result;
 };

@@ -4,20 +4,20 @@ import * as engine from '../engine';
 
 const progressionSize = 10;
 
-const getProgression = (size) => {
-  const startProgression = engine.getRandomNumber();
-  const stepProgression = engine.getRandomNumber();
-
+const getProgression = (size, start, step) => {
   const progression = [];
   for (let i = 0; i < size; i += 1) {
-    progression[i] = startProgression + (stepProgression * i);
+    progression[i] = start + (step * i);
   }
 
   return progression;
 };
 
 const createGameData = () => {
-  const fullArray = getProgression(progressionSize);
+  const startProgression = engine.getRandomNumber();
+  const stepProgression = engine.getRandomNumber();
+  const fullArray = getProgression(progressionSize, startProgression, stepProgression);
+
   let arrWithHiddenElement = [];
   const randomProgressionIndex = engine.getRandomNumber();
   const hiddenElement = fullArray[randomProgressionIndex];

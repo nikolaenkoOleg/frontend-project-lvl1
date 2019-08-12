@@ -2,14 +2,14 @@
 
 import * as engine from '../engine';
 
-const isEven = (num) => {
+const isEven = (item) => {
   const divisor = 2;
 
-  return num % divisor === 0;
+  return item % divisor === 0;
 };
 
-const boolToYesNo = (bool) => {
-  const result = bool ? 'yes' : 'no';
+const boolToYesNo = (predicate) => {
+  const result = predicate ? 'yes' : 'no';
 
   return result;
 };

@@ -2,14 +2,20 @@
 
 import * as engine from '../engine';
 
-const getCorrectAnswer = (num1, num2, sign) => {
+const getCorrectAnswer = (first, second, sign) => {
   let result = 0;
-  if (sign === '-') {
-    result = num1 - num2;
-  } else if (sign === '+') {
-    result = num1 + num2;
-  } else if (sign === '*') {
-    result = num1 * num2;
+  switch (sign) {
+    case '-':
+      result = first - second;
+      break;
+    case '+':
+      result = first + second;
+      break;
+    case '*':
+      result = first * second;
+      break;
+    default:
+      break;
   }
 
   return result;
