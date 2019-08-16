@@ -1,32 +1,18 @@
-#!/usr/bin/env node
+import engine from '../engine';
+import getRandomNumber from '../utils';
 
-import * as engine from '../engine';
+const gameDescription = 'Answer "yes" if number even otherwise answer "no".';
 
-const isEven = (item) => {
-  const divisor = 2;
-
-  return item % divisor === 0;
-};
-
-const boolToYesNo = (predicate) => {
-  const result = predicate ? 'yes' : 'no';
-
-  return result;
-};
+const isEven = item => item % 2 === 0;
 
 const createGameData = () => {
-  const gameItem = engine.getRandomNumber();
+  const question = getRandomNumber();
   const gameData = {
-    question: gameItem,
-    answer: boolToYesNo(isEven(gameItem)),
+    question,
+    answer: isEven(question) ? 'yes' : 'no',
   };
 
   return gameData;
 };
 
-export default () => {
-  const createQuestion = () => createGameData();
-  const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
-
-  engine.playGame(gameTitle, createQuestion);
-};
+export default () => engine(gameDescription, createGameData);

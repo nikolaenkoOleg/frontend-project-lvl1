@@ -1,36 +1,27 @@
-#!/usr/bin/env node
+import engine from '../engine';
+import getRandomNumber from '../utils';
 
-import * as engine from '../engine';
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (item) => {
-  if (item < 2) return false;
+  if (item === 2) return true;
+  if (item < 2 || item % 2 === 0) return false;
 
-  for (let i = 2; i < Math.round(item / 2); i += 1) {
+  for (let i = 2; i < Math.sqrt(item); i += 1) {
     if (item % i === 0) return false;
   }
 
   return true;
 };
 
-const boolToYesNo = (predicate) => {
-  const result = predicate ? 'yes' : 'no';
-
-  return result;
-};
-
 const createGameData = () => {
-  const gameitem = engine.getRandomNumber(20);
+  const question = getRandomNumber();
   const gameData = {
-    question: gameitem,
-    answer: boolToYesNo(isPrime(gameitem)),
+    question,
+    answer: isPrime(question) ? 'yes' : 'no',
   };
 
   return gameData;
 };
 
-export default () => {
-  const createQuestion = () => createGameData();
-  const gameTitle = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-  engine.playGame(gameTitle, createQuestion);
-};
+export default () => engine(gameDescription, createGameData);

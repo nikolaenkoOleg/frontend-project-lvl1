@@ -1,32 +1,29 @@
-#!/usr/bin/env node
+import engine from '../engine';
+import getRandomNumber from '../utils';
 
-import * as engine from '../engine';
+const gameDescription = 'What is the result of the expression?';
 
 const getCorrectAnswer = (first, second, sign) => {
-  let result = 0;
   switch (sign) {
     case '-':
-      result = first - second;
-      break;
+      return first - second;
     case '+':
-      result = first + second;
-      break;
+      return first + second;
     case '*':
-      result = first * second;
-      break;
+      return first * second;
     default:
       break;
   }
 
-  return result;
+  return 0;
 };
 
-const sign = ['-', '+', '*'];
+const signs = ['-', '+', '*'];
 
 const createGameData = () => {
-  const first = engine.getRandomNumber();
-  const second = engine.getRandomNumber();
-  const arithmeticSign = sign[engine.getRandomNumber(sign.length)];
+  const first = getRandomNumber();
+  const second = getRandomNumber();
+  const arithmeticSign = signs[getRandomNumber(signs.length)];
   const gameData = {
     question: `${first} ${arithmeticSign} ${second}`,
     answer: String(getCorrectAnswer(first, second, arithmeticSign)),
@@ -35,9 +32,4 @@ const createGameData = () => {
   return gameData;
 };
 
-export default () => {
-  const createQuestion = () => createGameData();
-  const gameTitle = 'What is the result of the expression?';
-
-  engine.playGame(gameTitle, createQuestion);
-};
+export default () => engine(gameDescription, createGameData);

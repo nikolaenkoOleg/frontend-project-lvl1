@@ -1,7 +1,7 @@
-#!/usr/bin/env node
+import engine from '../engine';
+import getRandomNumber from '../utils';
 
-import * as engine from '../engine';
-
+const gameDescription = 'What number is missing in the progression?';
 const progressionSize = 10;
 
 const getProgression = (size, start, step) => {
@@ -14,27 +14,22 @@ const getProgression = (size, start, step) => {
 };
 
 const createGameData = () => {
-  const startProgression = engine.getRandomNumber();
-  const stepProgression = engine.getRandomNumber();
-  const fullArray = getProgression(progressionSize, startProgression, stepProgression);
+  const start = getRandomNumber();
+  const step = getRandomNumber();
+  const progression = getProgression(progressionSize, start, step);
 
-  let arrWithHiddenElement = [];
-  const randomProgressionIndex = engine.getRandomNumber();
-  const hiddenElement = fullArray[randomProgressionIndex];
+  let question = [];
+  const randomProgressionIndex = getRandomNumber();
+  const answer = progression[randomProgressionIndex];
 
-  arrWithHiddenElement = fullArray;
-  arrWithHiddenElement[randomProgressionIndex] = '..';
+  question = progression;
+  question[randomProgressionIndex] = '..';
   const gameData = {
-    question: arrWithHiddenElement.join(' '),
-    answer: hiddenElement,
+    question: question.join(' '),
+    answer,
   };
 
   return gameData;
 };
 
-export default () => {
-  const createQuestion = () => createGameData();
-  const gameTitle = 'What number is missing in the progression?';
-
-  engine.playGame(gameTitle, createQuestion);
-};
+export default () => engine(gameDescription, createGameData);
