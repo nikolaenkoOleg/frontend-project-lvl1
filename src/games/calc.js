@@ -2,6 +2,7 @@ import engine from '../engine';
 import getRandomNumber from '../utils';
 
 const gameDescription = 'What is the result of the expression?';
+const signs = ['-', '+', '*'];
 
 const getCorrectAnswer = (first, second, sign) => {
   switch (sign) {
@@ -17,8 +18,6 @@ const getCorrectAnswer = (first, second, sign) => {
 
   return 0;
 };
-
-const signs = ['-', '+', '*'];
 
 const createGameData = () => {
   const first = getRandomNumber();
