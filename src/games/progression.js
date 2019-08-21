@@ -18,12 +18,11 @@ const createGameData = () => {
   const step = getRandomNumber();
   const progression = getProgression(progressionSize, start, step);
 
-  let question = [];
-  const randomProgressionIndex = getRandomNumber();
-  const answer = progression[randomProgressionIndex];
+  const hiddenElementIndex = getRandomNumber(0, progressionSize);
+  const answer = progression[hiddenElementIndex];
 
-  question = progression;
-  question[randomProgressionIndex] = '..';
+  const question = progression;
+  question[hiddenElementIndex] = '..';
   const gameData = {
     question: question.join(' '),
     answer,

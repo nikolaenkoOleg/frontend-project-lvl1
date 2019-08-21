@@ -16,13 +16,13 @@ const getCorrectAnswer = (first, second, sign) => {
       break;
   }
 
-  return 0;
+  return null;
 };
 
 const createGameData = () => {
   const first = getRandomNumber();
   const second = getRandomNumber();
-  const arithmeticSign = signs[getRandomNumber(signs.length)];
+  const arithmeticSign = signs[getRandomNumber(0, signs.length - 1)];
   const gameData = {
     question: `${first} ${arithmeticSign} ${second}`,
     answer: String(getCorrectAnswer(first, second, arithmeticSign)),

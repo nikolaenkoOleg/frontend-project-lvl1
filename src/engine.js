@@ -10,8 +10,7 @@ export default (gameDescription, createGameData) => {
   console.log(`Hello, ${userName}\n`);
 
   for (let i = 0; i < roundsCount; i += 1) {
-    const gameData = createGameData();
-    const { question, answer } = gameData;
+    const { question, answer } = createGameData();
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');
