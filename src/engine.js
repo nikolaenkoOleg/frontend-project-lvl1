@@ -24,5 +24,5 @@ export default (gameDescription, createGameData) => {
     }
   }
 
-  console.log(`\nCongratulations, ${userName}!!!`);
+  console.log(`\nCongratulations, ${userName}!`);
 };

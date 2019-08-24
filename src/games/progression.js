@@ -18,7 +18,7 @@ const createGameData = () => {
   const step = getRandomNumber();
   const progression = getProgression(progressionSize, start, step);
 
-  const hiddenElementIndex = getRandomNumber(0, progressionSize);
+  const hiddenElementIndex = getRandomNumber(0, progressionSize - 1);
   const answer = progression[hiddenElementIndex];
 
   const question = progression;

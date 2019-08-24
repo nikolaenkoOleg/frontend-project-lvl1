@@ -22,10 +22,10 @@ const getCorrectAnswer = (first, second, sign) => {
 const createGameData = () => {
   const first = getRandomNumber();
   const second = getRandomNumber();
-  const arithmeticSign = signs[getRandomNumber(0, signs.length - 1)];
+  const sign = signs[getRandomNumber(0, signs.length - 1)];
   const gameData = {
-    question: `${first} ${arithmeticSign} ${second}`,
-    answer: String(getCorrectAnswer(first, second, arithmeticSign)),
+    question: `${first} ${sign} ${second}`,
+    answer: String(getCorrectAnswer(first, second, sign)),
   };
 
   return gameData;
